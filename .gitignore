@@ -1,0 +1,14 @@
+.DS_Store
+node_modules
+.next
+coverage
+tmp
+log
+storage/*.sqlite3
+storage/*.sqlite3-*
+apps/api/storage/*.sqlite3
+apps/api/storage/*.sqlite3-*
+apps/api/vendor/bundle
+apps/web/.env.local
+apps/api/.env
+*.tsbuildinfo

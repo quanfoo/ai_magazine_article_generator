@@ -1,0 +1,26 @@
+app = "ai-magazine-article-api"
+primary_region = "sin"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  RAILS_ENV = "production"
+  WEB_ORIGIN = "https://ai-magazine-article-generator.vercel.app"
+
+[[mounts]]
+  source = "sqlite_data"
+  destination = "/rails/storage"
+
+[[services]]
+  internal_port = 3001
+  protocol = "tcp"
+
+  [[services.ports]]
+    handlers = ["http"]
+    port = 80
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = 443
+
