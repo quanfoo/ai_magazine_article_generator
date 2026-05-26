@@ -1,26 +1,30 @@
-app = "ai-magazine-article-api"
-primary_region = "sin"
+# fly.toml app configuration file generated for ai-magazine-article-api on 2026-05-26T16:48:20+07:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'ai-magazine-article-api'
+primary_region = 'sin'
 
 [build]
-  dockerfile = "Dockerfile"
+  dockerfile = 'Dockerfile'
 
 [env]
-  RAILS_ENV = "production"
-  WEB_ORIGIN = "https://ai-magazine-article-generator.vercel.app"
+  RAILS_ENV = 'production'
+  WEB_ORIGIN = 'https://ai-magazine-article-generator.vercel.app'
 
 [[mounts]]
-  source = "sqlite_data"
-  destination = "/rails/storage"
+  source = 'sqlite_data'
+  destination = '/rails/storage'
 
-[[services]]
+[http_service]
   internal_port = 3001
-  protocol = "tcp"
+  force_https = true
+  auto_stop_machines = 'stop'
+  auto_start_machines = true
+  min_machines_running = 0
 
-  [[services.ports]]
-    handlers = ["http"]
-    port = 80
-
-  [[services.ports]]
-    handlers = ["tls", "http"]
-    port = 443
-
+[[vm]]
+  memory = '1gb'
+  cpus = 1
+  memory_mb = 1024
